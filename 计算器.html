@@ -1,0 +1,101 @@
+<html>
+ <head>
+ <title>计算器</title>
+ <link rel="stylesheet" type="text/css" href="">
+ <meta http-equiv="content-type" content="text/html;charset=utf-8">
+ <script type="text/javascript">
+     function Calculator(){
+         this.jisuan=function(num1,num2,oper){
+             var res=0;
+             switch(oper){
+                 case "+":
+                     res=num1+num2;
+                     break;
+                 case "-":
+                     res=num1-num2;
+                     break;
+                 case "*":
+                     res=num1*num2;
+                     break;
+                 case "/":
+                     res=num1/num2;
+                     break;
+             }
+             return res;
+         }
+     }
+    var calculator=new Calculator();
+     var val=0; 
+    var xval=0;
+    var temp=0;     
+     var oper="";
+
+     function inputEvent(e){
+     
+         val=e.value
+         var xsval=document.getElementById("inp1");        
+         xsval.value+=val; 
+        xval=parseFloat(xsval.value);
+         
+     }
+     function inputPCB(e){
+         var xsval=document.getElementById("inp1");
+         if(e.value=="Clear"){
+             xsval.value="";
+         }else if(e.value=="Back"){
+        }else if(e.value=="POWER"){
+            xsval.value=Math.pow(xsval.value,2);            
+         }
+     }
+     function inputOper(e){
+
+        oper=e.value;
+         if (e.value=="+"){
+             var xsval=document.getElementById("inp1");
+            temp=parseFloat(xsval.value);
+            xsval.value="";                        
+         }else if(e.value=="-"){
+             var xsval=document.getElementById("inp1");
+             temp=parseFloat(xsval.value);
+             xsval.value="";
+         }else if(e.value=="*"){
+             var xsval=document.getElementById("inp1");
+             temp=parseFloat(xsval.value);
+             xsval.value="";
+         }else if(e.value=="/"){
+             var xsval=document.getElementById("inp1");
+             temp=parseFloat(xsval.value);
+             xsval.value="";
+         }
+     }
+     function inputEquel(e){
+
+        var xsval=document.getElementById("inp1");        
+         if(e.value=="="){
+            xsval.value=calculator.jisuan(temp,xval,oper);
+         }
+     }
+ </script>
+ <style>
+     input{
+         width:60px;
+     }
+     #inp1{
+         width:280px;
+         text-align:right;
+     }
+ </style>
+ </head>
+ <body>
+     <table border="1">
+         <tr><td colspan="4"><input id="inp1" type="text" value="" name="xianshi"/></td></tr>
+         <tr><td><input type="button" value="POWER" onclick="inputPCB(this)"/></td><td><input type="button" value="Clear" onclick="inputPCB(this)"/></td><td><input type="button" value="Back"onclick="inputPCB(this)"/></td><td></td></tr>
+
+         <tr><td><input type="button" value="1" onclick="inputEvent(this)"/></td><td><input type="button" value="2" onclick="inputEvent(this)"/></td><td><input type="button"value="3" onclick="inputEvent(this)"/></td><td><input type="button" value="4" onclick="inputEvent(this)"/></td></tr>
+    
+         <tr><td><input type="button" value="5" onclick="inputEvent(this)"/></td><td><input type="button" value="6" onclick="inputEvent(this)"/></td><td><input type="button"value="7" onclick="inputEvent(this)"/></td><td><input type="button" value="8" onclick="inputEvent(this)"/></td></tr>    
+         <tr><td><input type="button" value="9" onclick="inputEvent(this)"/></td><td><input type="button" value="0" onclick="inputEvent(this)"/></td><td><input type="button"value="." onclick="inputEvent(this)"/></td><td><input type="button" value="=" onclick="inputEquel(this)"/></td></tr>
+
+         <tr><td><input type="button" value="+" onclick="inputOper(this)"/></td><td><input type="button" value="-" onclick="inputOper(this)"/></td><td><input type="button"value="*" onclick="inputOper(this)"/></td><td><input type="button" value="/" onclick="inputOper(this)"/></td></tr>    </table>
+ </body>
+ </html>
